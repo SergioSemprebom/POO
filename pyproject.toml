@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "hastagpoo"
+version = "0.1.0"
+description = "Criando um sistema de Conta Bancária com Class (Python)"
+authors = ["Sergio Semprebom <sergiosemprebom@gmail.com>"]
+license = "Python"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
