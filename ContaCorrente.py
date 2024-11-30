@@ -4,10 +4,11 @@ import pytz
 # Construindo uma classe de conta corrente
 class ContaCorrente(): # --> classe
 
-    def _data_hora(self):
-        fuso_BR = pytz.timezone('Brazil/East')
+    def _data_hora():
+        fuso_BR = pytz.timezone('America/Sao_Paulo')
         horario_BR = datetime.now(fuso_BR)
-        return horario_BR
+        return horario_BR.strftime('%d/%m/%Y %H:%M:%S')
+
 
     def __init__(self, nome, cpf, agencia, nu_conta): # --> metodo construtor
         self.nome = nome # --> atributo nome
@@ -29,7 +30,7 @@ class ContaCorrente(): # --> classe
 # Chamando o atributo saldo para ser modificado
     def depositar(self, valor):
         self.saldo += valor
-        self.transacoes.append((valor, self.saldo, ContaCorrente. _data_hora()))
+        self.transacoes.append((valor, self.saldo, ContaCorrente._data_hora()))
 
     
     def limite_conta(self):
@@ -43,7 +44,7 @@ class ContaCorrente(): # --> classe
             self.consultar_saldo()
         else:
              self.saldo -= valor
-             self.transacoes.append((-valor, self.saldo, ContaCorrente. _data_hora()))
+             self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
 
 
     def consultar_limite_chequeespecial(self):
@@ -57,6 +58,13 @@ class ContaCorrente(): # --> classe
         for transacoes in self.transacoes:
             print(transacoes)
 
+    def transferir(self, valor, conta_destino):
+        self.saldo -= valor
+        self.transacoes.append((-valor, self.saldo, ContaCorrente._data_hora()))
+        conta_destino.saldo += valor
+        conta_destino.transacoes.append((valor, conta_destino.saldo, ContaCorrente._data_hora()))
+
+
 
 # Programa escrito manualmente
 conta_sergio = ContaCorrente('sergio', '222.444.777-88', 123, 321456) # --> chamando o metodo init
@@ -69,11 +77,14 @@ conta_sergio.consultar_saldo()
 # Sacando um dinheiro da conta
 conta_sergio.sacar_dinheiro(10500)
 
-
 print('Saldo Final')
 conta_sergio.consultar_saldo()
 conta_sergio.consultar_limite_chequeespecial()
 
-print('-'*20, 'Histórico de Transações', '-'*20)
+print('-'*10, 'Histórico de Transações', '-')
 conta_sergio.consultar_historico_transacoes()
 
+print('-'*10, 'Histórico de Transações', '-')
+
+conta_aleteia = ContaCorrente('Aleteia', '345.875.768-45', 123, 321456) # --> chamando o metodo init
+conta_sergio.transferir(1000, conta_aleteia)
