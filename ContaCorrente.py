@@ -74,17 +74,26 @@ conta_sergio.consultar_saldo()# consulta o primeiro valor do metodo init
 conta_sergio.depositar(10000)
 conta_sergio.consultar_saldo()
 
-# Sacando um dinheiro da conta
-conta_sergio.sacar_dinheiro(10500)
-
 print('Saldo Final')
 conta_sergio.consultar_saldo()
 conta_sergio.consultar_limite_chequeespecial()
 
-print('-'*10, 'Histórico de Transações', '-')
+
+# Conta Sergio Consultar
+print('-'*20, 'Histórico de Transações', '-'*20)
 conta_sergio.consultar_historico_transacoes()
 
-print('-'*10, 'Histórico de Transações', '-')
 
+# Conta Aleteia Consultar
+print('-'*20, 'Histórico de Transações', '-'*20)
 conta_aleteia = ContaCorrente('Aleteia', '345.875.768-45', 123, 321456) # --> chamando o metodo init
 conta_sergio.transferir(1000, conta_aleteia)
+
+
+conta_sergio.consultar_saldo()
+conta_aleteia.consultar_saldo()
+
+print('-'*20, 'Histórico de Transações', '-'*20)
+conta_sergio.consultar_historico_transacoes()
+conta_aleteia.consultar_historico_transacoes()
+
