@@ -1,6 +1,13 @@
+from datetime import datetime
+import pytz
 
 # Construindo uma classe de conta corrente
 class ContaCorrente(): # --> classe
+
+    def _data_hora(self):
+        fuso_BR = pytz.timezone('Brazil/East')
+        horario_BR = datetime.now(fuso_BR)
+        return horario_BR
 
     def __init__(self, nome, cpf, agencia, nu_conta): # --> metodo construtor
         self.nome = nome # --> atributo nome
@@ -9,8 +16,8 @@ class ContaCorrente(): # --> classe
         self.limite = None
         self.agencia = agencia
         self.nu_conta = nu_conta
+        self.transacoes = []
 
-    
 # Criando um função para consulta de Saldo
 # A função precisa ser direta e objetiva
     def consultar_saldo(self):
@@ -22,6 +29,7 @@ class ContaCorrente(): # --> classe
 # Chamando o atributo saldo para ser modificado
     def depositar(self, valor):
         self.saldo += valor
+        self.transacoes.append((valor, self.saldo, ContaCorrente. _data_hora()))
 
     
     def limite_conta(self):
@@ -35,10 +43,19 @@ class ContaCorrente(): # --> classe
             self.consultar_saldo()
         else:
              self.saldo -= valor
+             self.transacoes.append((-valor, self.saldo, ContaCorrente. _data_hora()))
 
 
     def consultar_limite_chequeespecial(self):
         print(f'Seu limite de cheque especial é de R$ {self.limite_conta():,.2f} reais')
+
+
+
+    def consultar_historico_transacoes(self):
+        print('Histórico de transações:')
+        print('valor, saldo, Data e Hora')
+        for transacoes in self.transacoes:
+            print(transacoes)
 
 
 # Programa escrito manualmente
@@ -56,4 +73,7 @@ conta_sergio.sacar_dinheiro(10500)
 print('Saldo Final')
 conta_sergio.consultar_saldo()
 conta_sergio.consultar_limite_chequeespecial()
+
+print('-'*20, 'Histórico de Transações', '-'*20)
+conta_sergio.consultar_historico_transacoes()
 
