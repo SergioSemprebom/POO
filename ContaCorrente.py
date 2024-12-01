@@ -2,7 +2,22 @@ from datetime import datetime
 import pytz
 
 # Construindo uma classe de conta corrente
-class ContaCorrente(): # --> classe
+class ContaCorrente():
+    """
+    Cria um objeto ContaCorrente para gerenciar as contas dos clientes.
+
+
+    Atributos:
+        nome (str): Nome do Cliente.
+        cpf (str): CPF do cliente. Deve ser inseridos com pontos e traços.
+        agencia (int): Agencia Responsavel pela conta do cliente.
+        nu_conta (int): Número da Conta Corrente do cliente.
+        saldo : Saldo disponivel na conta do cliente.
+        limite: limite de Cheque especial daquele cliente.
+        transacoes: Histórico de transacoes do cliente.
+    """
+
+    
 
     def _data_hora():
         fuso_BR = pytz.timezone('America/Sao_Paulo')
@@ -19,9 +34,13 @@ class ContaCorrente(): # --> classe
         self.nu_conta = nu_conta
         self.transacoes = []
 
-# Criando um função para consulta de Saldo
-# A função precisa ser direta e objetiva
+
     def consultar_saldo(self):
+        """
+            Exibe o saldo atual da conta do cliente.
+            Não ha parametros necessarios.
+        :return:
+        """
         print(f'O saldo da sua conta é de R$ {self.saldo:,.2f} reais')
 
     
