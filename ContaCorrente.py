@@ -18,7 +18,7 @@ class ContaCorrente():
     """
 
     
-
+    @staticmethod
     def _data_hora():
         fuso_BR = pytz.timezone('America/Sao_Paulo')
         horario_BR = datetime.now(fuso_BR)
@@ -84,10 +84,26 @@ class ContaCorrente():
         conta_destino.transacoes.append((valor, conta_destino.saldo, ContaCorrente._data_hora()))
 
 
+class CartaCredito:
+
+    def __init__(self, titular, conta-corrente):
+        self.numero = None
+        self.titular = None
+        self.validade = None
+        self.cod_seguranca = None
+        self.limite = None
+        self.conta-corrente = None
+
+
+
+
+
+
+
 
 # Programa escrito manualmente
 conta_sergio = ContaCorrente('sergio', '222.444.777-88', 123, 321456) # --> chamando o metodo init
-conta_sergio.consultar_saldo()# consulta o primeiro valor do metodo init
+"""conta_sergio.consultar_saldo()# consulta o primeiro valor do metodo init
 
 # Depositando um dinheiro na conta corrente
 conta_sergio.depositar(10000)
@@ -115,4 +131,6 @@ conta_aleteia.consultar_saldo()
 print('-'*20, 'Histórico de Transações', '-'*20)
 conta_sergio.consultar_historico_transacoes()
 conta_aleteia.consultar_historico_transacoes()
+"""
 
+cartao_sergio = CartaCredito('Sergio', conta_sergio)
