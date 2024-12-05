@@ -93,25 +93,42 @@ class CartaoCredito:
     def _data_hora():
         fuso_BR = pytz.timezone('America/Sao_Paulo')
         horario_BR = datetime.now(fuso_BR)
-        return horario_BR.strftime('%d/%m/%Y %H:%M:%S')
+        return horario_BR
+
 
     def __init__(self, titular, conta_corrente):
-        self.numero = 123
+        self.numero = randint(1000000000000000, 9999999999999999)
         self.titular = titular
-        self.validade = f'{CartaoCredito._data_hora().month}/{ CartaoCredito._data_hora().year + 4}'
-        self.cod_seguranca = None
+        self.validade = '{}/{}'.format(CartaoCredito._data_hora().month, CartaoCredito._data_hora().year + 4)
+        self.cod_seguranca = '{}{}{}'.format(randint(0, 9), randint(0, 9), randint(0, 9))
         self.limite = 1000
+        self._senha = '1234'
         self.conta_corrente = conta_corrente
         conta_corrente.cartoes.append(self)
 
 
+    @property
+    def senha(self):
+        return self._senha
+    
+    @senha.getter
+    def senha(self, valor):
+        if len(valor) == 4 and valor.isnumeric():
+            self._senha = valor
+        else:
+            print('Nova Senha Inválida')
+        
+
+
 # Programa escrito manualmente
 conta_sergio = ContaCorrente('sergio', '222.444.777-88', 123, 321456) # --> chamando o metodo init
-
 cartao_sergio = CartaoCredito('Sergio', conta_sergio)
+cartao_sergio.senha = '123'
 
-print(cartao_sergio.conta_corrente._nu_conta)
+print(f'Ag: {cartao_sergio.conta_corrente._nu_conta}')
+print(f'CC: {cartao_sergio.numero}')
+print(f'CVV: {cartao_sergio.cod_seguranca}')
+print(f'Validade: {cartao_sergio.validade}')
+print(f'Limite: {cartao_sergio.limite}')
 
-print(conta_sergio.cartoes)
-
-print(cartao_sergio.validade)
+print(f'Senha: {cartao_sergio.senha}')
