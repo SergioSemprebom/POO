@@ -68,17 +68,17 @@ class AgenciaPremium(Agencia):
         else:
             print('O cliente não atende aos requisitos')
 
-# Programa_agenciaVirtual
-agencia_virtual = AgenciaVirtual('www.agenciavirtual.com.br', 13_996357080, 37457874534)
-agencia_virtual.verificar_caixas()
+if __name__=='__main__':
+    # Programa_agenciaVirtual
+    agencia_virtual = AgenciaVirtual('www.agenciavirtual.com.br', 13_996357080, 37457874534)
+    agencia_virtual.verificar_caixas()
 
-# Agencia_Comum
-agencia_comum = AgenciaComum(13_996357080, 37457874534)
+    # Agencia_Comum
+    agencia_comum = AgenciaComum(13_996357080, 37457874534)
 
-# Agencia_Premium
-agencia_premium = AgenciaPremium(13_996357080, 37457874534)
+    # Agencia_Premium
+    agencia_premium = AgenciaPremium(13_996357080, 37457874534)
 
-
-agencia_virtual.depositar_paypal(20_000)
-print(agencia_virtual.caixa)
-print(agencia_virtual.caixa_paypal)
+    agencia_virtual.depositar_paypal(20_000)
+    print(agencia_virtual.caixa)
+    print(agencia_virtual.caixa_paypal)
