@@ -1,4 +1,4 @@
-# POO
+# Programaçao Orientada Objeto -> POO
 
 Explicação do Código da Classe ContaCorrente
 Este código define uma classe ContaCorrente em Python que simula uma conta bancária básica. Ele demonstra os conceitos de classes, objetos, métodos e atributos em programação orientada a objetos.
